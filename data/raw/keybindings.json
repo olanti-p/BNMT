@@ -887,6 +887,13 @@
   },
   {
     "type": "keybinding",
+    "name": "Reload Tileset",
+    "category": "OVERMAP",
+    "id": "RELOAD_TILESET",
+    "bindings": []
+  },
+  {
+    "type": "keybinding",
     "id": "ROTATE",
     "category": "OVERMAP_EDITOR",
     "name": "Rotate",

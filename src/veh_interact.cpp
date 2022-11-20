@@ -1736,9 +1736,14 @@ vehicle_part *veh_interact::get_most_damaged_part() const
         return !b.part().removed && b.part().base.damage() > a.part().base.damage();
     };
     const vehicle_part_range vpr = veh->get_all_parts();
-    auto high_damage_iterator = std::max_element( vpr.begin(),
-                                vpr.end(),
-                                part_damage_comparison );
+    auto it_max = vpr.begin();
+    for( auto it = std::next( vpr.begin() ); it != vpr.end(); it = std::next( it ) ) {
+        if( part_damage_comparison( *it_max, *it ) ) {
+            it_max = it;
+        }
+    }
+
+    auto high_damage_iterator = it_max;
     if( high_damage_iterator == vpr.end() ||
         high_damage_iterator->part().removed ) {
         return nullptr;

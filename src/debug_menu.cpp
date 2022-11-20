@@ -105,6 +105,8 @@
 #include "weather_gen.h"
 #include "weighted_list.h"
 
+#include "editor/editor_engine.h"
+
 static const mtype_id mon_generator( "mon_generator" );
 
 extern std::map<std::string, weighted_int_list<std::shared_ptr<mapgen_function_json_nested>> >
@@ -132,6 +134,7 @@ enum debug_menu_index {
     DEBUG_EDIT_PLAYER,
     DEBUG_SPAWN_ARTIFACT,
     DEBUG_SPAWN_CLAIRVOYANCE,
+    DEBUG_ADV_MAP_EDITOR,
     DEBUG_MAP_EDITOR,
     DEBUG_CHANGE_WEATHER,
     DEBUG_WIND_DIRECTION,
@@ -287,6 +290,7 @@ static int map_uilist()
         { uilist_entry( DEBUG_REVEAL_MAP, true, 'r', _( "Reveal map" ) ) },
         { uilist_entry( DEBUG_KILL_AREA, true, 'a', _( "Kill in Area" ) ) },
         { uilist_entry( DEBUG_KILL_NPCS, true, 'k', _( "Kill NPCs" ) ) },
+        { uilist_entry( DEBUG_ADV_MAP_EDITOR, true, 'A', _( "Advanced Map editor" ) ) },
         { uilist_entry( DEBUG_MAP_EDITOR, true, 'M', _( "Map editor" ) ) },
         { uilist_entry( DEBUG_CHANGE_WEATHER, true, 'w', _( "Change weather" ) ) },
         { uilist_entry( DEBUG_WIND_DIRECTION, true, 'd', _( "Change wind direction" ) ) },
@@ -1545,6 +1549,10 @@ void debug()
 
         case DEBUG_SPAWN_CLAIRVOYANCE:
             u.i_add( item( "architect_cube", calendar::turn ) );
+            break;
+
+        case DEBUG_ADV_MAP_EDITOR:
+            editor::bnme_entry_point();
             break;
 
         case DEBUG_MAP_EDITOR:

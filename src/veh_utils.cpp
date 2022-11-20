@@ -91,9 +91,15 @@ vehicle_part &most_repairable_part( vehicle &veh, Character &who, bool only_repa
                  b.part().damage() > a.part().damage() );
     };
     const vehicle_part_range vp_range = veh.get_all_parts();
-    const auto high_damage_iterator = std::max_element( vp_range.begin(),
-                                      vp_range.end(),
-                                      part_damage_comparison );
+
+    auto it_max = vp_range.begin();
+    for( auto it = std::next( vp_range.begin() ); it != vp_range.end(); it = std::next( it ) ) {
+        if( part_damage_comparison( *it_max, *it ) ) {
+            it_max = it;
+        }
+    }
+
+    const auto high_damage_iterator = it_max;
     if( high_damage_iterator == vp_range.end() ||
         high_damage_iterator->part().removed ||
         !high_damage_iterator->info().is_repairable() ||

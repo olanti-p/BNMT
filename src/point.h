@@ -30,6 +30,7 @@ class ostream;
 
 class JsonIn;
 class JsonOut;
+struct ImVec2;
 
 // NOLINTNEXTLINE(cata-xy)
 struct point {
@@ -39,6 +40,9 @@ struct point {
     int y = 0;
     constexpr point() = default;
     constexpr point( int X, int Y ) : x( X ), y( Y ) {}
+    point( ImVec2 v );
+
+    operator ImVec2();
 
     constexpr point operator+( const point &rhs ) const {
         return point( x + rhs.x, y + rhs.y );

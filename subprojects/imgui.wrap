@@ -1,0 +1,9 @@
+[wrap-file]
+directory = imgui-1dd964f87dc1ea0a76b137baf3401bd201fc2012
+source_url = https://github.com/ocornut/imgui/archive/1dd964f87dc1ea0a76b137baf3401bd201fc2012.zip
+source_filename = imgui-1dd964f87dc1ea0a76b137baf3401bd201fc2012.zip
+source_hash = 0a477178711cd60b57d887b6ab82df1cecb72f4fb36a036806884711413916d6
+patch_filename = imgui_1dd964f87dc1ea0a76b137baf3401bd201fc2012_patch.zip
+
+[provide]
+imgui = imgui_dep

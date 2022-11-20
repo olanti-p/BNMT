@@ -1955,6 +1955,7 @@ static tripoint_abs_omt display( const tripoint_abs_omt &orig,
     ictxt.register_action( "TOGGLE_OVERMAP_WEATHER" );
     ictxt.register_action( "TOGGLE_FOREST_TRAILS" );
     ictxt.register_action( "MISSIONS" );
+    ictxt.register_action( "RELOAD_TILESET" );
 
     if( data.debug_editor ) {
         ictxt.register_action( "PLACE_TERRAIN" );
@@ -2100,6 +2101,9 @@ static tripoint_abs_omt display( const tripoint_abs_omt &orig,
             place_ter_or_special( ui, curs, action );
         } else if( action == "MISSIONS" ) {
             g->list_missions();
+        } else if( action == "RELOAD_TILESET" ) {
+            g->reload_tileset();
+            ui.mark_resize();
         }
 
         std::chrono::time_point<std::chrono::steady_clock> now = std::chrono::steady_clock::now();

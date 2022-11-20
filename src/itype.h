@@ -879,9 +879,10 @@ struct itype {
         int damage_max_ = +4000;
         /// @}
 
-    protected:
+    public:
         itype_id id = itype_id::NULL_ID(); /** unique string identifier for this type */
 
+    protected:
         // private because is should only be accessed through itype::nname!
         // nname() is used for display purposes
         translation name = no_translation( "none" );

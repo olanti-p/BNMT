@@ -192,10 +192,13 @@ int main( int argc, char *argv[] )
     int seed = time( nullptr );
     bool verifyexit = false;
     bool check_mods = false;
+    bool enter_editor_on_start = false;
     std::string dump;
     dump_mode dmode = dump_mode::TSV;
     std::vector<std::string> opts;
     std::string world; /** if set try to load first save in this world on startup */
+    cata::optional<std::string> load_editor_project_on_start;
+    cata::optional<std::string> export_editor_project_on_start;
 
 #if defined(__ANDROID__)
     // Start the standard output logging redirector
@@ -236,7 +239,7 @@ int main( int argc, char *argv[] )
         const char *section_default = nullptr;
         const char *section_map_sharing = "Map sharing";
         const char *section_user_directory = "User directories";
-        const std::array<arg_handler, 13> first_pass_arguments = {{
+        const std::array<arg_handler, 16> first_pass_arguments = {{
                 {
                     "--seed", "<string of letters and or numbers>",
                     "Sets the random number generator's seed value",
@@ -414,7 +417,42 @@ int main( int argc, char *argv[] )
                         dont_debugmsg = true;
                         return 0;
                     }
-                }
+                },
+                {
+                    "--editor", nullptr,
+                    "If set, will enter Advanced Map Editor on first world load",
+                    section_default,
+                    [&]( int, const char ** ) -> int {
+                        enter_editor_on_start = true;
+                        return 0;
+                    }
+                },
+                {
+                    "--project", "<path>",
+                    "Load editor project",
+                    section_default,
+                    [&]( int n, const char *params[] ) -> int {
+                        if( n < 1 )
+                        {
+                            return -1;
+                        }
+                        load_editor_project_on_start = params[0];
+                        return 1;
+                    }
+                },
+                {
+                    "--export", "<path>",
+                    "Export editor project",
+                    section_default,
+                    [&]( int n, const char *params[] ) -> int {
+                        if( n < 1 )
+                        {
+                            return -1;
+                        }
+                        export_editor_project_on_start = params[0];
+                        return 1;
+                    }
+                },
             }
         };
 
@@ -621,6 +659,7 @@ int main( int argc, char *argv[] )
 
     check_dir_good( PATH_INFO::user_dir() );
     check_dir_good( PATH_INFO::config_dir() );
+    check_dir_good( PATH_INFO::config_dir() + "imgui/" );
     check_dir_good( PATH_INFO::savedir() );
 
     setupDebug( DebugOutput::file );
@@ -677,6 +716,9 @@ int main( int argc, char *argv[] )
     rng_set_engine_seed( seed );
 
     g = std::make_unique<game>();
+    g->enter_editor_on_start = enter_editor_on_start;
+    g->load_editor_project_on_start = load_editor_project_on_start;
+    g->export_editor_project_on_start = export_editor_project_on_start;
     // First load and initialize everything that does not
     // depend on the mods.
     try {

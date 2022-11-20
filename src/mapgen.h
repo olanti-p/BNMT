@@ -9,6 +9,7 @@
 #include <utility>
 #include <vector>
 
+#include "mapgen_map_key.h"
 #include "pimpl.h"
 #include "point.h"
 #include "regional_settings.h"
@@ -48,6 +49,7 @@ class mapgen_function_builtin : public virtual mapgen_function
 {
     public:
         building_gen_pointer fptr;
+        std::string fname;
         mapgen_function_builtin( building_gen_pointer ptr, int w = 1000 ) : mapgen_function( w ),
             fptr( ptr ) {
         }
@@ -179,34 +181,6 @@ class jmapgen_place
         jmapgen_int repeat;
 };
 
-using palette_id = std::string;
-
-// Strong typedef for strings used as map/palette keys
-// Each key should be a UTF-8 string displayed in only one column (i.e.
-// utf8_width of 1) but can contain multiple Unicode code points.
-class map_key
-{
-    public:
-        map_key( const std::string & );
-        map_key( const JsonMember & );
-
-        friend bool operator==( const map_key &l, const map_key &r ) {
-            return l.str == r.str;
-        }
-
-        std::string str;
-};
-
-namespace std
-{
-template<>
-struct hash<map_key> {
-    size_t operator()( const map_key &k ) const noexcept {
-        return hash<std::string> {}( k.str );
-    }
-};
-} // namespace std
-
 class mapgen_palette
 {
     public:
@@ -250,6 +224,8 @@ class mapgen_palette
          */
         static const mapgen_palette &get( const palette_id &id );
 
+        static const std::map<palette_id, mapgen_palette> &get_all();
+
         static void check_definitions();
     private:
         static mapgen_palette load_internal( const JsonObject &jo, const std::string &src, bool require_id,
@@ -264,6 +240,7 @@ class mapgen_palette
 };
 
 struct jmapgen_objects {
+    public:
 
         jmapgen_objects( const point &offset, const point &mapsize, const point &tot_size );
 
@@ -297,7 +274,6 @@ struct jmapgen_objects {
          **/
         bool has_vehicle_collision( mapgendata &dat, const point &offset ) const;
 
-    private:
         /**
          * Combination of where to place something and what to place.
          */
@@ -315,10 +291,8 @@ class mapgen_function_json_base
         size_t calc_index( const point &p ) const;
         bool has_vehicle_collision( mapgendata &dat, const point &offset ) const;
 
-    private:
         pimpl<json_source_location> jsrcloc;
 
-    protected:
         explicit mapgen_function_json_base( const json_source_location &jsrcloc );
         virtual ~mapgen_function_json_base();
 
@@ -358,10 +332,8 @@ class mapgen_function_json : public mapgen_function_json_base, public virtual ma
         ter_id fill_ter;
         oter_id predecessor_mapgen;
 
-    protected:
         bool setup_internal( const JsonObject &jo ) override;
 
-    private:
         jmapgen_int rotation;
 };
 
@@ -379,7 +351,6 @@ class update_mapgen_function_json : public mapgen_function_json_base
         bool update_map( mapgendata &md, const point &offset = point_zero,
                          bool verify = false ) const;
 
-    protected:
         bool setup_internal( const JsonObject &/*jo*/ ) override;
         ter_id fill_ter;
 };
@@ -393,10 +364,9 @@ class mapgen_function_json_nested : public mapgen_function_json_base
         ~mapgen_function_json_nested() override = default;
 
         void nest( mapgendata &dat, const point &offset ) const;
-    protected:
+
         bool setup_internal( const JsonObject &jo ) override;
 
-    private:
         jmapgen_int rotation;
 };
 
@@ -432,6 +402,11 @@ bool has_mapgen_for( const std::string &key );
 void calculate_mapgen_weights(); // throws
 
 void check_mapgen_definitions();
+
+const std::map<std::string, weighted_int_list<std::shared_ptr<mapgen_function_json_nested>> >
+        &get_all_nested_mapgen();
+const std::map<std::string, std::vector<std::unique_ptr<update_mapgen_function_json>> >
+        &get_all_update_mapgen();
 
 /// move to building_generation
 enum room_type {

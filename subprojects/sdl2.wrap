@@ -1,0 +1,11 @@
+[wrap-file]
+directory = SDL2-2.24.0
+source_url = https://libsdl.org/release/SDL2-2.24.0.tar.gz
+source_filename = SDL2-2.24.0.tar.gz
+source_hash = 91e4c34b1768f92d399b078e171448c6af18cafda743987ed2064a28954d6d97
+patch_filename = sdl2_2.24.0-2_patch.zip
+patch_hash = a61c3015df58aebf47f3ec16649200cb5266f951ff1f7e1b750713a89c130384
+wrapdb_version = 2.24.0-2
+
+[provide]
+sdl2 = sdl2_dep

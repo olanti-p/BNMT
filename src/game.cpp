@@ -173,6 +173,8 @@
 #include "weather.h"
 #include "worldfactory.h"
 
+#include "editor/editor_engine.h"
+
 class computer;
 
 #if defined(TILES)
@@ -1551,6 +1553,12 @@ bool game::do_turn()
                     ui_manager::redraw();
                     take_screenshot();
                     queue_screenshot = false;
+                }
+
+                if( enter_editor_on_start ) {
+                    enter_editor_on_start = false;
+                    editor::bnme_entry_point();
+                    continue;
                 }
 
                 if( handle_action() ) {

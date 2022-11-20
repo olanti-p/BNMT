@@ -787,6 +787,8 @@ endif
 # Enumerations of all the source files and headers.
 SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
 HEADERS := $(wildcard $(SRC_DIR)/*.h)
+EDITSRC := $(wildcard $(SRC_DIR)/editor/*.cpp)
+EDITHDR := $(wildcard $(SRC_DIR)/editor/*.h)
 TESTSRC := $(wildcard tests/*.cpp)
 TESTHDR := $(wildcard tests/*.h)
 JSON_FORMATTER_SOURCES := tools/format/format.cpp src/json.cpp
@@ -798,6 +800,8 @@ TOOLHDR := $(wildcard tools/*/*.h)
 ASTYLE_SOURCES := $(sort \
   $(SOURCES) \
   $(HEADERS) \
+  $(EDITSRC) \
+  $(EDITHDR) \
   $(TESTSRC) \
   $(TESTHDR) \
   $(JSON_FORMATTER_SOURCES) \

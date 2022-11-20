@@ -1,4 +1,5 @@
 #include "json.h"
+#include "format.h"
 
 #include "getpost.h"
 
@@ -13,8 +14,6 @@
 #include <map>
 #include <sstream>
 #include <string>
-
-static void format( JsonIn &jsin, JsonOut &jsout, int depth = -1, bool force_wrap = false );
 
 #if defined(MSYS2) || defined(_MSC_VER)
 static void erase_char( std::string &s, const char &c )
@@ -91,7 +90,7 @@ static void format_collection( JsonIn &jsin, JsonOut &jsout, int depth,
     write_func( jsin, jsout, depth, true );
 }
 
-static void format( JsonIn &jsin, JsonOut &jsout, int depth, bool force_wrap )
+void format( JsonIn &jsin, JsonOut &jsout, int depth, bool force_wrap )
 {
     depth++;
     if( jsin.test_array() ) {
@@ -158,6 +157,8 @@ static void format( JsonIn &jsin, JsonOut &jsout, int depth, bool force_wrap )
         std::cerr << "\"" << std::endl;
     }
 }
+
+#ifndef NO_JSON_FORMAT_MAIN
 
 int main( int argc, char *argv[] )
 {
@@ -237,3 +238,5 @@ int main( int argc, char *argv[] )
         }
     }
 }
+
+#endif // !NO_JSON_FORMAT_MAIN

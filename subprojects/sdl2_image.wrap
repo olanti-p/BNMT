@@ -1,0 +1,12 @@
+[wrap-file]
+directory = SDL2_image-2.0.5
+source_url = https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.5.tar.gz
+source_filename = SDL2_image-2.0.5.tar.gz
+source_hash = bdd5f6e026682f7d7e1be0b6051b209da2f402a2dd8bd1c4bd9c25ad263108d0
+patch_filename = sdl2_image_2.0.5-3_patch.zip
+patch_url = https://wrapdb.mesonbuild.com/v2/sdl2_image_2.0.5-3/get_patch
+patch_hash = 565f998d2a4b7da20e0a7773490b7d14dc71da934582caa8b05647eec49bbbef
+
+[provide]
+sdl2_image = sdl2_image_dep
+

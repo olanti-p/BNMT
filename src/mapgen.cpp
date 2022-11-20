@@ -398,6 +398,23 @@ void check_mapgen_definitions()
     }
 }
 
+const std::map<std::string, weighted_int_list<std::shared_ptr<mapgen_function_json_nested>> >
+        &get_all_nested_mapgen()
+{
+    return nested_mapgen;
+}
+
+const std::map<std::string, std::vector<std::unique_ptr<update_mapgen_function_json>> >
+        &get_all_update_mapgen()
+{
+    return update_mapgen;
+}
+
+const mapgen_factory &get_all_oter_mapgen()
+{
+    return oter_mapgen;
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 ///// json mapgen functions
 ///// 1 - init():
@@ -435,8 +452,11 @@ load_mapgen_function( const JsonObject &jio, const point &offset, const point &t
     }
     const std::string mgtype = jio.get_string( "method" );
     if( mgtype == "builtin" ) {
-        if( const building_gen_pointer ptr = get_mapgen_cfunction( jio.get_string( "name" ) ) ) {
-            return std::make_shared<mapgen_function_builtin>( ptr, mgweight );
+        std::string fname = jio.get_string( "name" );
+        if( const auto ptr = get_mapgen_cfunction( fname ) ) {
+            auto ret = std::make_shared<mapgen_function_builtin>( ptr, mgweight );
+            ret->fname = fname;
+            return ret;
         } else {
             jio.throw_error( "function does not exist", "name" );
         }
@@ -444,11 +464,11 @@ load_mapgen_function( const JsonObject &jio, const point &offset, const point &t
         JsonObject jo = jio.get_object( "object" );
         const json_source_location jsrc = jo.get_source_location();
         jo.allow_omitted_members();
-        return std::make_shared<mapgen_function_json>(
-                   jsrc, mgweight, offset, total );
+        return std::make_shared<mapgen_function_json>( jsrc, mgweight, offset, total );
     } else {
         jio.throw_error( R"(invalid value: must be "builtin" or "json")", "method" );
     }
+    return nullptr;
 }
 
 void load_and_add_mapgen_function( const JsonObject &jio, const std::string &id_base,
@@ -2146,7 +2166,7 @@ void mapgen_palette::load_place_mapings( const JsonObject &jo, const std::string
     }
 }
 
-std::map<std::string, mapgen_palette> palettes;
+std::map<palette_id, mapgen_palette> palettes;
 
 static bool check_furn( const furn_id &id, const std::string &context )
 {
@@ -2164,7 +2184,7 @@ static bool check_furn( const furn_id &id, const std::string &context )
 
 void mapgen_palette::check()
 {
-    std::string context = "palette " + id;
+    std::string context = "palette " + id.str();
     for( const std::pair<const map_key, furn_id> &p : format_furniture ) {
         if( check_furn( p.second, context ) ) {
             return;
@@ -2186,7 +2206,7 @@ mapgen_palette mapgen_palette::load_temp( const JsonObject &jo, const std::strin
 void mapgen_palette::load( const JsonObject &jo, const std::string &src )
 {
     mapgen_palette ret = load_internal( jo, src, true, false );
-    if( ret.id.empty() ) {
+    if( ret.id.is_empty() ) {
         jo.throw_error( "Named palette needs an id" );
     }
 
@@ -2208,6 +2228,11 @@ const mapgen_palette &mapgen_palette::get( const palette_id &id )
     debugmsg( "Requested palette with unknown id %s", id.c_str() );
     static mapgen_palette dummy;
     return dummy;
+}
+
+const std::map<palette_id, mapgen_palette> &mapgen_palette::get_all()
+{
+    return palettes;
 }
 
 void mapgen_palette::check_definitions()
@@ -2243,14 +2268,14 @@ mapgen_palette mapgen_palette::load_internal( const JsonObject &jo, const std::s
     auto &format_terrain = new_pal.format_terrain;
     auto &format_furniture = new_pal.format_furniture;
     if( require_id ) {
-        new_pal.id = jo.get_string( "id" );
+        new_pal.id = palette_id( jo.get_string( "id" ) );
     }
 
     if( jo.has_array( "palettes" ) ) {
         if( allow_recur ) {
             auto pals = jo.get_string_array( "palettes" );
             for( auto &p : pals ) {
-                new_pal.add( p );
+                new_pal.add( palette_id( p ) );
             }
         } else {
             jo.throw_error( "Recursive palettes are not implemented yet" );
@@ -6742,3 +6767,18 @@ bool has_update_id( const mapgen_id &id )
 }
 
 } // namespace mapgen
+
+/** @relates string_id */
+template<>
+bool string_id<mapgen_palette>::is_valid() const
+{
+    const auto iter = palettes.find( *this );
+    return iter != palettes.end();
+}
+
+/** @relates string_id */
+template<>
+const mapgen_palette &string_id<mapgen_palette>::obj() const
+{
+    return mapgen_palette::get( *this );
+}

@@ -82,6 +82,9 @@ using itype_id = string_id<itype>;
 class ma_buff;
 using mabuff_id = string_id<ma_buff>;
 
+class mapgen_palette;
+using palette_id = string_id<mapgen_palette>;
+
 class martialart;
 using matype_id = string_id<martialart>;
 

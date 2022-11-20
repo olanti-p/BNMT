@@ -15,6 +15,9 @@
 
 enum class direction : unsigned;
 
+/** Size of editor canvas tile, in canvas pts. */
+constexpr int ETILE_SIZE = 32;
+
 namespace coords
 {
 
@@ -24,7 +27,10 @@ enum class scale {
     overmap_terrain,
     segment,
     overmap,
-    vehicle
+    vehicle,
+    screen,  // Editor: screen space, in pixels
+    epos,    // Editor: canvas pos, in canvas points
+    etile,   // Editor: canvas pos, in canvas tiles
 };
 
 constexpr scale ms = scale::map_square;
@@ -32,6 +38,9 @@ constexpr scale sm = scale::submap;
 constexpr scale omt = scale::overmap_terrain;
 constexpr scale seg = scale::segment;
 constexpr scale om = scale::overmap;
+constexpr scale screen = scale::screen;
+constexpr scale epos = scale::epos;
+constexpr scale etile = scale::etile;
 
 constexpr int map_squares_per( scale s )
 {
@@ -49,6 +58,10 @@ constexpr int map_squares_per( scale s )
             return SEG_SIZE * map_squares_per( scale::overmap_terrain );
         case scale::overmap:
             return OMAPX * map_squares_per( scale::overmap_terrain );
+        case scale::epos:
+            return 1;
+        case scale::etile:
+            return ETILE_SIZE;
         default:
             constexpr_fatal( 0, "Requested scale of %d", s );
     }
@@ -60,6 +73,7 @@ enum class origin {
     submap, // from corner of submap
     overmap_terrain, // from corner of overmap_terrain
     overmap, // from corner of overmap
+    etile, // Editor: from nearest tile
 };
 
 constexpr origin origin_from_scale( scale s )
@@ -71,6 +85,8 @@ constexpr origin origin_from_scale( scale s )
             return origin::overmap_terrain;
         case scale::overmap:
             return origin::overmap;
+        case scale::etile:
+            return origin::etile;
         default:
             constexpr_fatal( origin::abs, "Requested origin for scale %d", s );
     }
@@ -175,6 +191,11 @@ class coord_point
 
         coord_point &operator-=( const tripoint &r ) {
             raw_ -= r;
+            return *this;
+        }
+
+        coord_point &operator-() {
+            raw_ = -raw_;
             return *this;
         }
 
@@ -495,6 +516,16 @@ using tripoint_om_omt = coords::coord_point<tripoint, coords::origin::overmap, c
 using tripoint_abs_seg = coords::coord_point<tripoint, coords::origin::abs, coords::seg>;
 using tripoint_abs_om = coords::coord_point<tripoint, coords::origin::abs, coords::om>;
 /*@}*/
+
+using point_rel_epos = coords::coord_point<point, coords::origin::relative, coords::epos>;
+using point_abs_epos = coords::coord_point<point, coords::origin::abs, coords::epos>;
+using point_etile_epos = coords::coord_point<point, coords::origin::etile, coords::epos>;
+
+using point_rel_etile = coords::coord_point<point, coords::origin::relative, coords::etile>;
+using point_abs_etile = coords::coord_point<point, coords::origin::abs, coords::etile>;
+
+using point_rel_screen = coords::coord_point<point, coords::origin::relative, coords::screen>;
+using point_abs_screen = coords::coord_point<point, coords::origin::abs, coords::screen>;
 
 using coords::project_to;
 using coords::project_remain;

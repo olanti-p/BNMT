@@ -29,6 +29,7 @@
 #include "json.h"
 #include "line.h"
 #include "map.h"
+#include "mapgen.h"
 #include "map_iterator.h"
 #include "mapbuffer.h"
 #include "mapgen.h"
