@@ -2467,9 +2467,11 @@ bool mapgen_function_json_base::setup_common( const JsonObject &jo )
                                                expected_dim.y, parray.size() ) );
         }
         if( static_cast<int>( parray.size() ) != total_size.y ) {
+            /*
             parray.throw_error(
                 string_format( "format: rows: must have %d rows, not %d; check mapgensize if applicable",
                                total_size.y, parray.size() ) );
+            */
         }
         for( int c = m_offset.y; c < expected_dim.y; c++ ) {
             const std::string row = parray.get_string( c );
@@ -2483,9 +2485,11 @@ bool mapgen_function_json_base::setup_common( const JsonObject &jo )
                                    c + 1, expected_dim.x, row_keys.size() ) );
             }
             if( row_keys.size() != static_cast<size_t>( total_size.x ) ) {
+                /*
                 parray.throw_error(
                     string_format( "  format: row %d must have %d columns, not %d; check mapgensize if applicable",
                                    c + 1, total_size.x, row_keys.size() ) );
+                */
             }
             for( int i = m_offset.x; i < expected_dim.x; i++ ) {
                 const point p = point( i, c ) - m_offset;
