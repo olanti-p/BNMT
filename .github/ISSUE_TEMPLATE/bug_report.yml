@@ -7,14 +7,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Thanks for reaching out!
-
-        This bug report can be directly generated within the game.
-
-        - `Main menu (ESC)` > `Debug Menu` > `Info` > `Submit a bug report on github`
-        - it fills out necessary information automatically for you
-
-        please check [README](../../README.md#ive-found-a-bug-what-should-i-do) for more information.
+        Please check [list of known bugs](https://github.com/olanti-p/BNME/blob/main/doc/BNME/BUGS.md) and the [bug tracker](https://github.com/olanti-p/BNME/issues) before opening a new issue.
+        
 
   - type: textarea
     id: describe-bug
@@ -35,9 +29,10 @@ body:
       label: Steps To Reproduce
       description: Steps to reproduce the behavior
       placeholder: |
-        1. Make a player with a gun, magazine, and some ammo.
-        2. Try to aim at a wall.
-        3. There's no way to increase aim level.
+        1. Create a new project
+        2. Create a new mapgen
+        3. Select 'Bucket' tool
+        4. There's no way to pan camera anymore
     validations:
       required: true
 
@@ -47,20 +42,17 @@ body:
       label: Screenshots
       description: |
         **If applicable**, add screenshots to help explain your problem.
-        Do not take a screenshot of the crashing window.
-        Please provide the crash logs in the "Additional context"
 
   - type: textarea
     id: versions-and-configuration
     attributes:
       label: Versions and configuration
       description: |
-        - To generate:`Main menu (ESC)` > `Debug Menu` > `Info` > `Generate game report`
+        - To generate:`Exit editor to game` > `Main menu (ESC)` > `Debug Menu` > `Info` > `Generate game report`
         - Please update your OS version with a more precise version.
       placeholder: |
         - OS: [e.g. iOS 8 or Windows 10 or Ubuntu 18.04]
-        - Game Version: [from the main menu, e.g. 0.C-29938-g90f5268437]
-        - Graphics version: [Tiles or Terminal]
+        - Game Version: [from the main menu, e.g. bnme-v0.1.23]
         - Ingame language: [Arabic or Bulgarian or Chinese (Simplified) or Chinese (Traditional) or Dutch or Esperanto or French or German or Italian (Italy) or Japanese or Korean or Polish or Portuguese (Brazil) or Russian or Serbian or Spanish (Argentina) or Spanish (Spain) or Turkish]
         - Mods loaded: [e.g.dda, boats, hacktheplanet, StatsThroughSkills]
     validations:
@@ -72,14 +64,12 @@ body:
       label: Additional context
       description: |
         Add any other context about the problem here.
-        Crash: if your problem refers to a crash, please add the following files to the "Additional Context" paragraph:
-        - From the /config folder (you can zip them both together):
-            - crash.log file.
-            - debug.log file.
-        - Your save file (zipped)
+
+        If applicable, please add relevant file(s) here:
+        - Configuration, debug log and ImGui state (you can just zip `config/` folder)
+        - Save file used as base for the editor (zipped)
+        - Custom mods (zipped), or download links for mods. 
+        - Project JSON file and/or export JSON file
 
       placeholder: |
-        - note #1: you can drag and drop files in this issue post!
-        - note #2: it is very important for us that you provide a save file in case of a crash. It really helps the developers
-            to reproduce the bug and fix it. If possible, try to provide a save file that occurs in the right conditions, just
-            before the crash happens.
+        - note: you can drag and drop files in this issue post!
