@@ -81,6 +81,7 @@ using liquid_eid = editable_id<liquid_item_tag>;
 using mgroup_eid = editable_id<MonsterGroup>;
 using npc_template_eid = editable_id<npc_template>;
 using oter_eid = editable_id<oter_t>;
+using oter_type_eid = editable_id<oter_type_t>;
 using palette_eid = editable_id<mapgen_palette>;
 using snippet_category_eid = editable_id<snippet_category_tag>;
 using ter_eid = editable_id<ter_t>;

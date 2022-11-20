@@ -949,6 +949,11 @@ void overmap_terrains::reset()
     terrains.reset();
 }
 
+const std::vector<oter_type_t> &overmap_terrains::get_all_types()
+{
+    return terrain_types.get_all();
+}
+
 const std::vector<oter_t> &overmap_terrains::get_all()
 {
     return terrains.get_all();

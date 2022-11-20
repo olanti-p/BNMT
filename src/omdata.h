@@ -307,6 +307,7 @@ void check_consistency();
 void finalize();
 void reset();
 
+const std::vector<oter_type_t> &get_all_types();
 const std::vector<oter_t> &get_all();
 
 } // namespace overmap_terrains

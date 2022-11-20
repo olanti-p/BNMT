@@ -117,6 +117,18 @@ const std::vector<std::string> &editable_id<oter_t>::get_all_opts()
 }
 
 template<>
+const std::vector<std::string> &editable_id<oter_type_t>::get_all_opts()
+{
+    if( all_opts.empty() ) {
+        all_opts.reserve( overmap_terrains::get_all_types().size() );
+        for( const oter_type_t &it : overmap_terrains::get_all_types() ) {
+            all_opts.push_back( it.id.str() );
+        }
+    }
+    return all_opts;
+}
+
+template<>
 const std::vector<std::string> &editable_id<mapgen_palette>::get_all_opts()
 {
     if( all_opts.empty() ) {

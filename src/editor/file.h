@@ -49,11 +49,11 @@ enum class OterMapgenBase {
 };
 
 struct me_mapgen_oter {
-    oter_eid om_terrain;
+    oter_type_eid om_terrain;
     int weight = 100;
     OterMapgenBase mapgen_base = OterMapgenBase::FillTer;
     ter_eid fill_ter = ter_eid::NULL_ID();
-    oter_eid predecessor_mapgen;
+    oter_type_eid predecessor_mapgen;
     me_int_range rotation;
 
     void serialize( JsonOut &jsout ) const;
