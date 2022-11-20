@@ -1,0 +1,31 @@
+[
+  {
+    "id": "flaregun",
+    "copy-from": "pistol_base",
+    "type": "GUN",
+    "name": { "str": "flaregun" },
+    "description": "A plastic single shot pistol that can be loaded with signal flares.",
+    "weight": "213 g",
+    "volume": "500 ml",
+    "ascii_picture": "flaregunb",
+    "price": 5000,
+    "price_postapoc": 500,
+    "material": [ "plastic", "steel" ],
+    "color": "light_red",
+    "ammo": "signal_flare",
+    "dispersion": 600,
+    "durability": 7,
+    "loudness": 40,
+    "clip_size": 1,
+    "valid_mod_locations": [
+      [ "accessories", 4 ],
+      [ "grip", 1 ],
+      [ "stock", 1 ],
+      [ "rail mount", 1 ],
+      [ "sights mount", 1 ],
+      [ "underbarrel mount", 1 ]
+    ],
+    "flags": [ "WATERPROOF_GUN", "NEVER_JAMS", "RELOAD_EJECT", "PYROMANIAC_WEAPON" ],
+    "faults": [  ]
+  }
+]

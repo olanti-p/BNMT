@@ -1,0 +1,42 @@
+[
+  {
+    "type": "recipe",
+    "result": "ghee",
+    "id_suffix": "with_the_power_of_the_atom",
+    "category": "CC_FOOD",
+    "subcategory": "CSC_FOOD_OTHER",
+    "skill_used": "cooking",
+    "difficulty": 3,
+    "time": "5 m",
+    "charges": 5,
+    "qualities": [ { "id": "CHURN", "level": 2 } ],
+    "tools": [ [ [ "rag", -1 ] ] ],
+    "autolearn": true,
+    "components": [ [ [ "milk_raw", 4 ] ], [ [ "salt", 2 ], [ "seasoning_salt", 2 ] ] ]
+  },
+  {
+    "type": "recipe",
+    "result": "afs_calorie_water",
+    "category": "CC_FOOD",
+    "subcategory": "CSC_FOOD_BREAD",
+    "skill_used": "cooking",
+    "time": 500,
+    "autolearn": true,
+    "qualities": [ { "id": "CONTAIN", "level": 1 } ],
+    "components": [ [ [ "afs_calorie_pill", 1 ] ], [ [ "water", 1 ], [ "water_clean", 1 ] ] ]
+  },
+  {
+    "type": "recipe",
+    "result": "afs_sungel",
+    "category": "CC_OTHER",
+    "subcategory": "CSC_OTHER_MEDICAL",
+    "skill_used": "firstaid",
+    "difficulty": 2,
+    "time": 20000,
+    "autolearn": true,
+    "batch_time_factors": [ 99, 1 ],
+    "qualities": [ { "id": "CHEM", "level": 1 } ],
+    "tools": [ [ [ "surface_heat", 5, "LIST" ] ] ],
+    "components": [ [ [ "afs_sundew", 1 ] ], [ [ "morphine", 1 ] ] ]
+  }
+]

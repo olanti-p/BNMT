@@ -1,0 +1,49 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CataBN\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-05 17:34+0300\n"
+"PO-Revision-Date: 2021-04-25 14:59+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+# Contains grammatical error.
+# 'Cataclysm' without context already exists. This string does not have plural forms, so it will be discarded.
+msgid "Cataclysm"
+msgstr "КОтОклизм"
+
+# Has different context from existing 'Test', so is considered a separate string.
+msgctxt "verb"
+msgid "Test"
+msgstr "Тестировать"
+
+# Contains grammatical error.
+# Existing '%s item' already has plural forms, so this string will be discarded.
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%d прИдмет"
+msgstr[1] "%d прИдмета"
+msgstr[2] "%d прИдметов"
+
+# Contains grammatical error.
+# Existing '%s spring' with matching context already has plural forms, so this string will be discarded.
+msgctxt "source of water"
+msgid "%d spring"
+msgid_plural "%d springs"
+msgstr[0] "%d родник"
+msgstr[1] "%d родника"
+msgstr[2] "%d родникоФ"
+
+msgctxt "metal coil"
+msgid "%d spring"
+msgid_plural "%d springs"
+msgstr[0] "%d пружина"
+msgstr[1] "%d пружины"
+msgstr[2] "%d пружин"

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "nailgun",
+    "copy-from": "pistol_base",
+    "type": "GUN",
+    "name": { "str": "nail gun" },
+    "description": "A tool used to drive nails into wood or other material.  It could also be used as an ad-hoc weapon.",
+    "weight": "3904 g",
+    "volume": "750 ml",
+    "price": 13000,
+    "price_postapoc": 500,
+    "to_hit": -2,
+    "bashing": 6,
+    "material": [ "plastic", "steel" ],
+    "color": "yellow",
+    "ammo": "nail",
+    "dispersion": 800,
+    "loudness": 5,
+    "clip_size": 20,
+    "reload": 50,
+    "valid_mod_locations": [ [ "grip mount", 1 ], [ "rail mount", 1 ], [ "sights mount", 1 ], [ "stock mount", 1 ], [ "underbarrel mount", 1 ] ]
+  }
+]

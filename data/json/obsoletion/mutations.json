@@ -1,0 +1,248 @@
+[
+  {
+    "type": "mutation",
+    "id": "ROBUST",
+    "name": { "str": "Robust Genetics" },
+    "points": 0,
+    "description": "Genetics?  Doesn't excuse not eating healthy, though.",
+    "valid": false,
+    "player_display": false
+  },
+  {
+    "type": "mutation",
+    "id": "TRUTHTELLER",
+    "name": { "str": "Truth Teller" },
+    "points": 0,
+    "description": "I'd lie if I said this trait was worth a whole point.",
+    "valid": false,
+    "player_display": false
+  },
+  {
+    "type": "mutation",
+    "id": "PAINREC2",
+    "name": { "str": "Quick Pain Recovery" },
+    "points": 0,
+    "description": "You recover from pain faster than normal.  DUMMIED OUT because it wasn't actually functional…",
+    "valid": false,
+    "player_display": false
+  },
+  {
+    "type": "mutation",
+    "id": "PAINREC3",
+    "name": { "str": "Very Quick Pain Recovery" },
+    "points": 0,
+    "description": "You recover from pain much faster than normal.  DUMMIED OUT because it wasn't actually functional…",
+    "valid": false,
+    "player_display": false
+  },
+  {
+    "type": "mutation",
+    "id": "TABLEMANNERS",
+    "name": { "str": "Rigid Table Manners" },
+    "points": 0,
+    "description": "You've been taught proper table manners from your early childhood on.  Now you can't even think about eating without a table.  Eating without it frustrates you, but eating like a civilized person gives you a bigger morale bonus.",
+    "starting_trait": false,
+    "valid": false
+  },
+  {
+    "type": "mutation",
+    "id": "HATES_BOOKS",
+    "name": { "str": "Hates Books" },
+    "points": -1,
+    "description": "Reading is for nerds!  Boring books are more boring, and you can't have fun by reading books.",
+    "valid": false,
+    "cancels": [ "ILLITERATE", "LOVES_BOOKS" ]
+  },
+  {
+    "type": "mutation",
+    "id": "TRIGGERHAPPY",
+    "name": { "str": "Trigger Happy" },
+    "points": -1,
+    "description": "Unimplemented.  To be removed after 0.F. to preserve save compatibility.",
+    "starting_trait": false,
+    "player_display": false,
+    "valid": false
+  },
+  {
+    "type": "mutation",
+    "id": "FORGETFUL",
+    "name": { "str": "Forgetful" },
+    "points": -3,
+    "description": "You have a hard time remembering things.  Your skills will erode slightly faster than usual, and you can remember less terrain.",
+    "social_modifiers": { "lie": -5 },
+    "skill_rust_multiplier": 0.66,
+    "valid": false,
+    "cancels": [ "GOODMEMORY" ]
+  },
+  {
+    "type": "mutation",
+    "id": "CLAWS_RETRACT_active",
+    "name": { "str": "Extended Claws" },
+    "copy-from": "CLAWS_RETRACT",
+    "valid": false,
+    "ugliness": 1,
+    "cut_dmg_bonus": 4,
+    "description": "Sharp claws are extended from the end of your fingers.",
+    "transform": { "target": "CLAWS_RETRACT", "msg_transform": "You retract your claws.", "active": false, "moves": 10 },
+    "cost": 0
+  },
+  {
+    "type": "mutation",
+    "id": "PROF_HELI_PILOT",
+    "name": "Helicopter Pilot",
+    "points": 0,
+    "description": "Everyone can pilot a helicopter nowadays, you don't need this trait.",
+    "valid": false,
+    "purifiable": false
+  },
+  {
+    "type": "mutation",
+    "id": "EATPOISON",
+    "name": { "str": "Intestinal Fortitude" },
+    "points": 2,
+    "description": "Your guts have developed the ability to handle poisonous food.  Mostly.",
+    "changes_to": [ "EATDEAD" ],
+    "valid": false
+  },
+  {
+    "type": "mutation",
+    "id": "INFIMMUNE",
+    "name": { "str": "Infection Immune" },
+    "points": 3,
+    "description": "Your bloodstream has developed antibiotic properties.  Your wounds will never become infected.",
+    "prereqs": [ "DISRESISTANT" ],
+    "prereqs2": [ "INFRESIST" ],
+    "valid": false
+  },
+  {
+    "type": "mutation",
+    "id": "DISRESISTANT",
+    "name": { "str": "Disease Resistant" },
+    "points": 1,
+    "description": "It's very unlikely that you will catch ambient diseases like a cold or the flu.",
+    "changes_to": [ "DISIMMUNE" ],
+    "valid": false
+  },
+  {
+    "type": "mutation",
+    "id": "DISIMMUNE",
+    "name": { "str": "Disease Immune" },
+    "points": 2,
+    "description": "Your body is simply immune to diseases.  You will never catch an ambient disease.",
+    "prereqs": [ "DISRESISTANT" ],
+    "flags": [ "NO_DISEASE" ],
+    "valid": false
+  },
+  {
+    "type": "mutation",
+    "id": "GOODMEMORY",
+    "name": { "str": "Good Memory" },
+    "points": 3,
+    "description": "You have an exceptional memory, and find it easy to remember things.  Your skills will erode slightly slower than usual.",
+    "skill_rust_multiplier": 1.33,
+    "starting_trait": false,
+    "valid": false,
+    "cancels": [ "FORGETFUL" ]
+  },
+  {
+    "type": "mutation",
+    "id": "NOMAD2",
+    "name": { "str": "Antsy" },
+    "points": -2,
+    "description": "You can't bear to stay still for long.  Your morale will suffer unless you constantly explore new territory.",
+    "valid": false,
+    "//": "Un-obsolete NOMAD2 and NOMAD3 if we ever get a way to ensure that a category mutation can only develop if the character starts with a chargen-only trait, instead of automatically dragging the prereq in when it tries to develop the target mutation.",
+    "//2": "Reminder for if the above is accomplished: NOMAD2 was BIRD, FISH, and CHIMERA; NOMAD3 was CHIMERA."
+  },
+  {
+    "type": "mutation",
+    "id": "NOMAD3",
+    "name": { "str": "Restless" },
+    "points": -4,
+    "description": "Spending any amount of time in familiar places makes you miserable.  Must.  Keep.  Moving.",
+    "valid": false
+  },
+  {
+    "type": "mutation",
+    "id": "ELFA_NV",
+    "name": { "str": "Fey Vision" },
+    "points": 3,
+    "description": "The shadows don't seem as dark now.  Activate to toggle NV-visible areas on or off.",
+    "prereqs": [ "ELFAEYES" ],
+    "changes_to": [ "ELFA_FNV" ],
+    "cancels": [ "LIZ_IR", "FEL_NV", "NIGHTVISION", "NIGHTVISION2", "NIGHTVISION3" ],
+    "active": true,
+    "starts_active": true,
+    "valid": false,
+    "night_vision_range": 4.5
+  },
+  {
+    "type": "mutation",
+    "id": "ELFA_FNV",
+    "name": { "str": "Fey Nightsight" },
+    "points": 5,
+    "description": "You have great low-light vision now, though that doesn't allow you to perform fine tasks such as crafting and reading in darkness.  Activate to toggle NV-visible areas on or off.",
+    "prereqs": [ "ELFA_NV" ],
+    "cancels": [ "LIZ_IR", "FEL_NV", "NIGHTVISION", "NIGHTVISION2", "NIGHTVISION3" ],
+    "active": true,
+    "starts_active": true,
+    "valid": false,
+    "night_vision_range": 10
+  },
+  {
+    "type": "mutation",
+    "id": "FEL_NV",
+    "name": { "str": "Feline Vision" },
+    "points": 4,
+    "description": "Your optic nerves and brain caught up with your eyes.  Now you can see pretty well at night.  Activate to toggle NV-visible areas on or off.",
+    "prereqs": [ "FEL_EYE" ],
+    "cancels": [ "ELFA_NV", "ELFA_FNV", "LIZ_IR", "NIGHTVISION", "NIGHTVISION2", "NIGHTVISION3" ],
+    "active": true,
+    "starts_active": true,
+    "valid": false,
+    "night_vision_range": 4.5
+  },
+  {
+    "type": "mutation",
+    "id": "CEPH_VISION",
+    "name": { "str": "Cephalopod Vision" },
+    "points": 3,
+    "description": "Your brain has caught up with your eyes.  You can see much better in the dark, but sunlight seems much brighter now.  Activate to toggle NV-visible areas on or off.",
+    "cancels": [ "LIZ_IR", "FEL_NV", "NIGHTVISION", "NIGHTVISION2", "NIGHTVISION3", "ELFA_NV", "ELFA_FNV" ],
+    "active": true,
+    "starts_active": true,
+    "valid": false,
+    "night_vision_range": 10
+  },
+  {
+    "type": "mutation",
+    "id": "URSINE_EYE",
+    "name": { "str": "Ursine Vision" },
+    "points": 1,
+    "description": "Your visual processing has shifted: though you can see better in the dark, you're nearsighted in the light.  Maybe glasses would help.  Activate to toggle NV-visible areas on or off.",
+    "cancels": [
+      "ELFAEYES",
+      "LIZ_EYE",
+      "BIRD_EYE",
+      "FEL_EYE",
+      "COMPOUND_EYES",
+      "NIGHTVISION",
+      "NIGHTVISION2",
+      "NIGHTVISION3",
+      "MYOPIC",
+      "HYPEROPIC"
+    ],
+    "valid": false,
+    "active": true,
+    "starts_active": true,
+    "night_vision_range": 4.5
+  },
+  {
+    "type": "mutation",
+    "id": "TOUGH_FEET",
+    "name": { "str": "Tough Feet" },
+    "points": 1,
+    "description": "This mutation has been obsoleted due to the hidden movement speed penalty being removed.  If you see this on a profession or mutate this trait, this is a bug.",
+    "valid": false
+  }
+]

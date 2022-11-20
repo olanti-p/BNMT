@@ -1,0 +1,64 @@
+[
+  {
+    "type": "effect_type",
+    "id": "weak_antibiotic_visible"
+  },
+  {
+    "type": "effect_type",
+    "id": "antibiotic_visible"
+  },
+  {
+    "type": "effect_type",
+    "id": "strong_antibiotic_visible"
+  },
+  {
+    "type": "effect_type",
+    "id": "tetanus"
+  },
+  {
+    "type": "effect_type",
+    "id": "bad_food_ennui",
+    "max_intensity": 3,
+    "rating": "bad"
+  },
+  {
+    "type": "effect_type",
+    "id": "winded"
+  },
+  {
+    "type": "effect_type",
+    "id": "high"
+  },
+  {
+    "type": "effect_type",
+    "id": "common_cold"
+  },
+  {
+    "type": "effect_type",
+    "id": "flu"
+  },
+  {
+    "type": "effect_type",
+    "id": "flushot"
+  },
+  {
+    "type": "effect_type",
+    "id": "took_thorazine_bad"
+  },
+  {
+    "type": "effect_type",
+    "id": "took_prozac_visible"
+  },
+  {
+    "type": "effect_type",
+    "id": "took_xanax_visible"
+  },
+  {
+    "type": "effect_type",
+    "id": "took_flumed"
+  },
+  {
+    "type": "effect_type",
+    "id": "took_anticonvulsant_visible"
+  }
+]
