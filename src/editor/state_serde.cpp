@@ -23,9 +23,9 @@ void deserialize( std::unique_ptr<editor::me_piece> &ptr, JsonIn &jsin )
 {
     JsonObject jo = jsin.get_object();
 
-    editor::PieceType pt;
+    editor::PieceType pt = editor::PieceType::NumJmTypes;
     jo.read( "piece_type", pt );
-    editor::uuid_t uuid;
+    editor::uuid_t uuid = editor::UUID_INVALID;
     jo.read( "uuid", uuid );
 
     std::unique_ptr<editor::me_piece> val = editor::make_new_piece( pt );
