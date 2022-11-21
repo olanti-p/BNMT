@@ -68,7 +68,7 @@ void show_project_ui( me_state &state, me_project &project )
             project.files.back().uuid = new_mapgen;
             uuid_t new_palette = project.uuid_gen();
             project.files.back().base.inline_palette_id = new_palette;
-            project.palettes.emplace_back();
+            project.palettes.emplace_back( me_palette::make_inline() );
             project.palettes.back().uuid = new_palette;
             ret = true;
         }
