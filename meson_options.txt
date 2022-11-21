@@ -1,0 +1,1 @@
+option('version', type : 'string', value : '', description : 'Version displayed by the executable.')

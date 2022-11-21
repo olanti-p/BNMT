@@ -316,9 +316,21 @@ lib_sources = files(
 
 subdir('editor/')
 
-vcs_tag(
-    command: [ 'git', 'describe', '--tags', '--match', 'bnme-*' ],
-    input: 'version.h.in',
-    output: 'version.h',
-    replace_string: '@VERSION@'
-)
+ver_string = get_option('version')
+
+if ver_string == ''
+    vcs_tag(
+        command: [ 'git', 'describe', '--tags', '--match', 'bnme-*' ],
+        input: 'version.h.in',
+        output: 'version.h',
+        replace_string: '@VERSION@'
+    )
+else
+    vcs_tag(
+        command: [ 'python', '../build-scripts/return_fail.py' ],
+        fallback: ver_string,
+        input: 'version.h.in',
+        output: 'version.h',
+        replace_string: '@VERSION@'
+    )
+endif
