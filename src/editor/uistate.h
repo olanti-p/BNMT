@@ -8,6 +8,8 @@
 #include "camera.h"
 #include "canvas_tools.h"
 
+#include <set>
+
 namespace editor
 {
 struct me_state;
