@@ -25,9 +25,7 @@ If you don't see your issue there, please check the [Issue tracker on GitHub](ht
 Please open a new issue only if you don't find yours in the lists.
 
 ## Feedback
-Feel free to reach me on Discord, `olanti-p#0624`.
-
-I'm available on official Bright Nights Discord server: https://discord.gg/XW7XhXuZ89
+I'm available on official Bright Nights Discord server: https://discord.gg/XW7XhXuZ89 , user id `olanti_p`.
 
 ## License
 BNME is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.
