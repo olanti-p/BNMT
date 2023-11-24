@@ -1,10 +1,10 @@
-# Bright Nights Mapgen Editor
+# Bright Nights Mapping Tool
 
 Mapgen editor for [Cataclysm: Bright Nights](https://github.com/cataclysmbnteam/Cataclysm-BN).
 
 WARNING: this is version 0.1, which is rather clunky to use.
 
-Version 0.2 is under development and should be available soon!
+Version 0.2 has moved over to https://github.com/olanti-p/Cataclysm-BN/tree/map-editor
 
 ![BNME_demo](/doc/BNME/BNME_demo.png "BNME demo")
 
